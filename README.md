@@ -12,3 +12,8 @@ ridiculously the fastest way to validate your idea.
 ## About
 
 Still on ideation, founded by me
+
+
+## Knowledge
+-Java
+-React
