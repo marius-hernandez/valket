@@ -3,7 +3,7 @@
 public class Main {
     static Person person=new Person("marius");
     public static void main(String[] args) {
-        System.out.printf("Hello %s", person.getName());
+        System.out.printf("Hello %s, what a %s", person.getName(), "sigma");
     }
 }
 
