@@ -5,6 +5,7 @@ export interface PricingTypes {
 }
   
 export interface PricingContent {
+  description:  string;
   monthly:  number;
   yearly:   number;
   includes: string[];

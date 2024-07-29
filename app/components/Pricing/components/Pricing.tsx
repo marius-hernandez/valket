@@ -33,16 +33,17 @@ export function Pricing() {
         {tabs.map((tab, key)=>{
           return(
             <TabsContent value={tab} key={key}>
+            <div className="grid grid-cols-3">
             { 
               Object.keys(pricing).map((key)=>{
                   return(
-                    <div key={key} className="grid grid-cols-3 bg-yellow-600">
-                      <PricingCard tier={key} tab={tab} value={pricing[key as keyof PricingTypes]} />
-                    </div>
+                    
+                      <PricingCard key={key} tier={key} tab={tab} value={pricing[key as keyof PricingTypes]} />
                   )
                     
                 })
             }
+            </div>
             </TabsContent>
           )
         })
