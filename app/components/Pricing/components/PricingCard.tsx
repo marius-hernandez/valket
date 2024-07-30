@@ -22,7 +22,7 @@ type CardTypes={
 export function PricingCard({ className, value, tier, tab}: CardTypes) {
   if(value===undefined) return null;
   return (
-    <Card className={cn("w-[300px] h-[400px] m-auto", className)}>
+    <Card className={cn("w-[350px] h-[400px] m-auto", className)}>
       <CardHeader>
         <CardTitle className="text-md font-light leading-none tracking-tight">{tier}</CardTitle>
         <CardTitle className="text-2xl font-extrabold leading-none tracking-tight">
@@ -50,7 +50,7 @@ export function PricingCard({ className, value, tier, tab}: CardTypes) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" className="w-full">
+        <Button variant={tier!='Venturer' ? 'secondary':'default'} className="w-full">
           <Check className="mr-2 h-4 w-4" /> Mark all as read
         </Button>
       </CardFooter>
