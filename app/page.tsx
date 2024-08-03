@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import { Pricing } from "./components/Pricing/components/Pricing";
 import { PricingCard } from "./components/Pricing/components/PricingCard";
@@ -8,7 +9,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Pricing />
-      <PricingCard />
+      {/* <Footer /> */}
     </main>
   );
 }

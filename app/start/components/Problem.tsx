@@ -16,25 +16,18 @@ import { z } from "zod"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { toast } from "@/components/ui/use-toast"
 
 // schema for problem, might need later
 const ProblemSchema = z.object({
   problemInput: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "Type more character pls",
   }),
 })
 
-
-const assumption=()=>{
-
-}
 
 const Problem = () => {
   const form = useForm<z.infer<typeof ProblemSchema>>({
@@ -47,32 +40,34 @@ const Problem = () => {
   function onSubmit(data: z.infer<typeof ProblemSchema>) {
     console.log(JSON.stringify(data, null, 2))
   }
+
+  const fact=(event: React.MouseEvent<HTMLButtonElement>, data: z.infer<typeof ProblemSchema>)=>{
+   const buttonName=event.currentTarget.name;
+   console.log(buttonName)
+  }
+
   return (
-    <>
+    <div>
     <h1>Problem</h1>
     <h2>What is my problem that you are addressing? You can put both facts and assumptions as long as you indicate them.</h2>
-    {/* <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='flex w-full items-center space-x-2'>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='flex placeholder:flex w-full items-center space-x-2'>
+          <Button type="submit" className='w-[100px]' name='assumption'>Assumption</Button>
           <FormField
             control={form.control}
             name="problemInput"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                <h1>Problem</h1>
+                <Input className='w-max' placeholder="Define your problem here..."  {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className='w-[100px]' name='fact'>Fact</Button>
       </form>
-      <div className="flex w-full items-center space-x-2">
-        <Button type="submit" onClick={}>Assumption</Button>
-        <Input type="email" placeholder="Email" />
-        <Button type="submit" onClick={}>Fact</Button>
-      </div>
-      </Form> */}
+      </Form>
       <section className='grid grid-cols-2'>
       {
         Object.keys(problemContent).map((problem, key)=>(
@@ -95,7 +90,7 @@ const Problem = () => {
       </section>
 
     
-    </>
+    </div>
   )
 }
 
