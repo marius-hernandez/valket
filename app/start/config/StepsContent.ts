@@ -5,11 +5,14 @@ import Solution from "../components/Solution";
 import SurveyMethod from "../components/SurveyMethod";
 import TargetMarket from "../components/TargetMarket";
 
-export const steps={
-  "Target Market":TargetMarket,
-  "Problem": Problem,
-  "Solution": Solution,
-  "Survey Method":SurveyMethod,
-  "Prototype":Prototype,
-  "Competitor": Competitor
+
+
+
+export const steps:{ [key: string]: [React.ComponentType<any>, boolean] }={
+  "Target Market":[TargetMarket, true],
+  "Problem": [Problem, false],
+  "Solution": [Solution, false],
+  "Survey Method":[SurveyMethod,false],
+  "Prototype":[Prototype, false],
+  "Competitor": [Competitor, false]
 }
