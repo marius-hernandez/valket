@@ -5,37 +5,44 @@ import { MoveLeft, MoveRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 const Start = () => {
   const [stepDone, setStepDone]=useState('')
-  const [stepComponent, isDone]=steps['Target Market']
-  const [Step, setStep] = useState(()=>steps['Target Market'][0]);
+  // let [stepComponent, isDone]=steps['Target Market']
   
+  const [stepIdx, setStepIdx]=useState(0)
+  const [StepComponent, setStepComponent] = useState(()=>steps[stepIdx].component);
+
+  const printer=(step:string)=>{
+    console.log(step)
+  }
   const prev=()=>{
-    console.log("prev")
+    steps[stepIdx].isCurr=false
+    steps[stepIdx-1].isCurr=true
+    setStepIdx(stepIdx-1)
   }
   const next=()=>{
-    console.log("next")
+    steps[stepIdx+1].isCurr=true
+    setStepIdx(stepIdx+1)
   }
-  
+  useEffect(()=>{
+    printer(steps[stepIdx].title)
+    setStepComponent(()=>steps[stepIdx].component)
+  },[stepIdx])
 
   return (
     <>
     <div className="flex">
-      <Button className="btn w-fit btn-circle" onClick={next}><MoveLeft /></Button>
+      {stepIdx!=0?<Button className={`btn w-fit btn-circle`} onClick={prev}><MoveLeft /></Button>:null }
       <ul className="steps w-full">
-        {Object.entries(steps).map(([key,[Step,isDone]])=>(
-          <li className={`step ${isDone?'step-primary':''}`} key={key}>{key}</li>
+        {steps.map(({title,component, isCurr},idx)=>(
+          <li key={idx} className={`step ${isCurr?'step-primary':''}`} >{title}</li>
         ))
         }
         <li className='step'>Done</li>
       </ul>
-      <Button className="btn w-fit btn-circle" onClick={prev}><MoveRight /></Button>
+      {stepIdx!=steps.length-1? <Button className="btn w-fit btn-circle" onClick={next}><MoveRight /></Button>:null}
     </div>
     
         <div className='grid gap-y-96'>
-            {/* {Object.entries(steps).map(([key, [Step, isDone]])=> {
-              return <Step key={key} />;
-            })
-            } */}
-            <Step />
+            <StepComponent />
         </div>
         
     </>
