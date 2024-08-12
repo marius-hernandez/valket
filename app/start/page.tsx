@@ -30,7 +30,9 @@ const Start = () => {
   return (
     <>
     <div className="flex">
-      {stepIdx!=0?<Button className={`btn w-fit btn-circle`} onClick={prev}><MoveLeft /></Button>:null }
+      <div className='w-20'>
+        {stepIdx!=0?<Button className={`btn w-fit btn-circle`} onClick={prev}><MoveLeft /></Button>:null }
+      </div>
       <ul className="steps w-full">
         {steps.map(({title,component, isCurr},idx)=>(
           <li key={idx} className={`step ${isCurr?'step-primary':''}`} >{title}</li>
@@ -38,10 +40,12 @@ const Start = () => {
         }
         <li className='step'>Done</li>
       </ul>
-      {stepIdx!=steps.length-1? <Button className="btn w-fit btn-circle" onClick={next}><MoveRight /></Button>:null}
+      <div className='w-20'>
+        {stepIdx!=steps.length-1? <Button className="btn w-fit btn-circle" onClick={next}><MoveRight /></Button>:null}
+      </div>
     </div>
     
-        <div className='grid gap-y-96'>
+        <div className='grid gap-y-96 py-10'>
             <StepComponent />
         </div>
         

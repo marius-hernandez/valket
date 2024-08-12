@@ -1,4 +1,4 @@
-import { IdeaType } from "../components/types/IdeaType";
+import { IdeaType } from "../../types/IdeaType";
 
 
 

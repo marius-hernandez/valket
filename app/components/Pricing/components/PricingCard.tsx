@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
-import { PricingContent, PricingTypes } from "../types/PricingTypes"
+import { PricingContent, PricingTypes } from "../../../types/PricingTypes"
 
 type CardTypes={
   tier:String,

@@ -15,7 +15,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { PricingTypes } from "../types/PricingTypes"
+import { PricingTypes } from "../../../types/PricingTypes"
 import { pricing } from "../config/PricingContents"
 import { PricingCard } from "./PricingCard"
 import { Fragment } from "react"

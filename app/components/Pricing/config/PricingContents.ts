@@ -1,4 +1,4 @@
-import { PricingTypes } from "../types/PricingTypes";
+import { PricingTypes } from "../../../types/PricingTypes";
 
 export const pricing:PricingTypes = {
     "Seed": {
