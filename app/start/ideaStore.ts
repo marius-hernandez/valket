@@ -5,7 +5,9 @@ import Competitor from "./components/Competitor";
 
 type IdeaStore= IdeaType &{
     setTargetMarket:(targetMarket:string)=>void
-    setProblem:(problem:{assumption:string[], fact:string[]})=>void
+    // setProblem:(assumption:string, fact:string)=>void
+    setAssumption:(assumption:string)=>void
+    setFact:(fact:string)=>void
     setSolution:(solution:string)=>void
     setSurveyMethod:(surveyMethod:string[])=>void
     setCompetitor:(competitor:string[])=>void
@@ -17,26 +19,8 @@ export const useIdeaStore = create<IdeaStore>()(
         (set) => ({
             'Target Market':'',
             'Problem':{
-                "Assumption":[
-                    "Assumption1",
-                    "Assumption2",
-                    "Assumption3",
-                    "Assumption4",
-                    "Assumption1",
-                    "Assumption2",
-                    "Assumption3",
-                    "Assumption4",
-                ],
-                "Fact":[
-                    "Fact1",
-                    "Fact2",
-                    "Fact3",
-                    "Fact4",
-                    "Fact1",
-                    "Fact2",
-                    "Fact3",
-                    "Fact4",
-                ]
+                "Assumption":[],
+                "Fact":[]
             },
             'Solution':'',
             'Survey Method':[''],
@@ -45,16 +29,26 @@ export const useIdeaStore = create<IdeaStore>()(
 
             setTargetMarket: (targetMarket)=>{
                 set({
-                    "Target Market":targetMarket
+                    "Target Market": targetMarket
                 })
             },
-            setProblem: (problem)=>{
-                set({
+            setAssumption: (assumption)=>{
+                set((state)=>({
                     "Problem":{
-                        Assumption:problem.assumption,
-                        Fact: problem.fact
+                        ...state.Problem,
+                        Assumption:[...state.Problem.Assumption, assumption]
+                       
                     }
-                })
+                }))
+            },
+            setFact: (fact)=>{
+                set((state)=>({
+                    "Problem":{
+                        ...state.Problem,
+                        Fact:[...state.Problem.Fact, fact]
+                       
+                    }
+                }))
             },
             setSolution: (solution)=>{
                 set({

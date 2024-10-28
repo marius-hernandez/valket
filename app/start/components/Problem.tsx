@@ -30,13 +30,11 @@ const ProblemSchema = z.object({
 
 
 const Problem = () => {
-  const ideaStore=useIdeaStore((state)=>state)
+  const ideaStore=useIdeaStore()
   const [problem, setProblem]=useState({})
-  const [action, setAction]= useState<string>('')
 
   useEffect(()=>{
     setProblem(ideaStore['Problem'])
-    console.log(ideaStore['Problem'])
   }, [ideaStore])
 
   const form = useForm<z.infer<typeof ProblemSchema>>({
@@ -47,11 +45,8 @@ const Problem = () => {
   })
  
   function onSubmit(data: z.infer<typeof ProblemSchema>) {
-    // ideaStore.setProblem(a)
-  }
-
-  const btnAction=(event: React.MouseEvent<HTMLButtonElement>)=>{
-   setAction(event.currentTarget.name)
+    setProblem('')
+    form.reset()
   }
 
   return (
@@ -59,15 +54,15 @@ const Problem = () => {
     <h1>Problem</h1>
     <h2>What is my problem that you are addressing? You can put both facts and assumptions as long as you indicate them.</h2>
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='flex placeholder:flex w-full items-center space-x-2'>
-          <Button type="submit" className='w-[100px]' onClick={btnAction} name='assumption' >Assumption</Button>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='grid grid-cols-3'>
+          <Button type="submit" className='w-[100px]' name='assumption' >Assumption</Button>
           <FormField
             control={form.control}
             name="problemInput"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                <Input className='w-max' placeholder="Define your problem here..."  {...field} />
+                <Input autoFocus className='w-full' placeholder="Define your problem here..."  {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -83,12 +78,13 @@ const Problem = () => {
             <div className="p-4">
               <p className="mb-4 text-2xl font-medium leading-none">{problem}</p>
               {ideaStore.Problem[problem as keyof ProblemType].map((problemItem, key) => (
-                <Fragment key={key}>
+                <div key={key} className='grid grid-cols-2 w-full'>
                   <div className="text-sm">
                     {problemItem}
                   </div>
+                  <Button className='w-fit'>Hello</Button>
                   <Separator className="my-2" />
-                </Fragment>
+                </div>
               ))}
             </div>
           </ScrollArea>

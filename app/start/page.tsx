@@ -10,9 +10,6 @@ const Start = () => {
   const [stepIdx, setStepIdx]=useState(0)
   const [StepComponent, setStepComponent] = useState(()=>steps[stepIdx].component);
 
-  const printer=(step:string)=>{
-    console.log(step)
-  }
   const prev=()=>{
     steps[stepIdx].isCurr=false
     steps[stepIdx-1].isCurr=true
@@ -22,8 +19,11 @@ const Start = () => {
     steps[stepIdx+1].isCurr=true
     setStepIdx(stepIdx+1)
   }
+  const clear=()=>{
+    localStorage.clear()
+  }
   useEffect(()=>{
-    printer(steps[stepIdx].title)
+    // clear()
     setStepComponent(()=>steps[stepIdx].component)
   },[stepIdx])
 
